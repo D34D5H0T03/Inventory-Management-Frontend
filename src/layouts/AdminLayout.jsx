@@ -3,13 +3,13 @@ import Sidebar from "@/components/dashboard/Sidebar";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 
 export default function AdminLayout() {
-  // Check for the JWT we saved during Login
-  const token = localStorage.getItem("access_token");
+//   // Check for the JWT we saved during Login
+//   const token = localStorage.getItem("access_token");
 
-  // If no token exists, bounce them to the login screen immediately
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
+//   // If no token exists, bounce them to the login screen immediately
+//   if (!token) {
+//     return <Navigate to="/login" replace />;
+//   }
 
   // If authenticated, render the Dashboard Shell
   return (

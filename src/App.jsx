@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import DashboardOverview from "@/pages/admin/DashboardOverview";
 
 // 1. Shared Infrastructure
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
@@ -29,18 +30,30 @@ export default function App() {
       <Router>
         <Routes>
           {/* PUBLIC ROUTES */}
-          <Route path="/" element={<PublicLayout><Hero /><FeatureGrid /></PublicLayout>} />
+          <Route
+            path="/"
+            element={
+              <PublicLayout>
+                <Hero />
+                <FeatureGrid />
+              </PublicLayout>
+            }
+          />
           <Route path="/login" element={<Login />} />
 
           {/* SECURE ADMIN ROUTES */}
           <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={
-              <div className="space-y-4">
-                <h2 className="text-3xl font-bold tracking-tight dark:text-white">Dashboard Overview</h2>
-                <p className="dark:text-slate-400">Welcome to the secure administrative portal.</p>
-              </div>
-            } />
-            <Route path="inventory" element={<h2 className="text-3xl font-bold dark:text-white">Inventory Module</h2>} />
+            {/* The index route automatically renders when you visit /admin */}
+            <Route index element={<DashboardOverview />} />
+
+            <Route
+              path="inventory"
+              element={
+                <h2 className="text-3xl font-bold dark:text-white">
+                  Inventory Module
+                </h2>
+              }
+            />
           </Route>
         </Routes>
       </Router>
