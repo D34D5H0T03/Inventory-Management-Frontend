@@ -1,40 +1,49 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "./components/ThemeProvider";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import FeatureGrid from "./components/FeatureGrid";
-import Login from "./components/Login";
 
-function LandingPage() {
+// 1. Shared Infrastructure
+import { ThemeProvider } from "@/components/shared/ThemeProvider";
+
+// 2. Layouts
+import AdminLayout from "@/layouts/AdminLayout";
+
+// 3. Storefront Components
+import Navbar from "@/components/storefront/Navbar";
+import Hero from "@/components/storefront/Hero";
+import FeatureGrid from "@/components/storefront/FeatureGrid";
+
+// 4. Pages
+import Login from "@/pages/public/Login";
+
+function PublicLayout({ children }) {
   return (
     <>
       <Navbar />
-      <main>
-        <Hero />
-        <FeatureGrid />
-      </main>
+      <main>{children}</main>
     </>
   );
 }
 
-function App() {
+export default function App() {
   return (
     <ThemeProvider>
       <Router>
-        <div className="min-h-screen bg-white dark:bg-slate-950 font-sans text-slate-900 transition-colors duration-300">
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={
-              <div className="p-8 dark:text-white text-2xl font-bold text-center mt-20">
-                Welcome to the POS Dashboard. JWT Acquired!
+        <Routes>
+          {/* PUBLIC ROUTES */}
+          <Route path="/" element={<PublicLayout><Hero /><FeatureGrid /></PublicLayout>} />
+          <Route path="/login" element={<Login />} />
+
+          {/* SECURE ADMIN ROUTES */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={
+              <div className="space-y-4">
+                <h2 className="text-3xl font-bold tracking-tight dark:text-white">Dashboard Overview</h2>
+                <p className="dark:text-slate-400">Welcome to the secure administrative portal.</p>
               </div>
             } />
-          </Routes>
-        </div>
+            <Route path="inventory" element={<h2 className="text-3xl font-bold dark:text-white">Inventory Module</h2>} />
+          </Route>
+        </Routes>
       </Router>
     </ThemeProvider>
   );
 }
-
-export default App;

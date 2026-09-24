@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useTheme } from "./ThemeProvider";
+import { useTheme } from "@/components/shared/ThemeProvider";
 import { ShoppingBag, Search, Package2, User, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
