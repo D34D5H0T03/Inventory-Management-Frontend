@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/components/shared/ThemeProvider";
-import { ShoppingBag, Search, Package2, User, Moon, Sun } from "lucide-react";
+import {  Search, Package2, User, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
+import CartSheet from "./CartSheet";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -66,16 +66,7 @@ export default function Navbar() {
             </Button>
           </div>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="relative hover:bg-slate-100 dark:hover:bg-slate-800"
-          >
-            <ShoppingBag className="h-5 w-5 text-slate-700 dark:text-slate-300" />
-            <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-slate-900 dark:bg-blue-600 text-white border-none">
-              0
-            </Badge>
-          </Button>
+          <CartSheet />
 
           {/* Linked Sign In Button */}
           <Button

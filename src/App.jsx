@@ -11,10 +11,13 @@ import AdminLayout from "@/layouts/AdminLayout";
 import Navbar from "@/components/storefront/Navbar";
 import Hero from "@/components/storefront/Hero";
 import FeatureGrid from "@/components/storefront/FeatureGrid";
-import Catalog from "@/pages/public/Catalog";
 
 // 4. Pages
 import Login from "@/pages/public/Login";
+import ProductDetail from "@/pages/public/ProductDetail";
+import Catalog from "@/pages/public/Catalog";
+import Checkout from "@/pages/public/Checkout";
+import OrderConfirmation from "@/pages/public/OrderConfirmation";
 
 function PublicLayout({ children }) {
   return (
@@ -45,6 +48,30 @@ export default function App() {
             element={
               <PublicLayout>
                 <Catalog />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/product/:id"
+            element={
+              <PublicLayout>
+                <ProductDetail />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <PublicLayout>
+                <Checkout />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/order-confirmation"
+            element={
+              <PublicLayout>
+                <OrderConfirmation />
               </PublicLayout>
             }
           />
